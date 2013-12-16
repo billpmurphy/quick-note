@@ -2,10 +2,10 @@
 
 #Get the name of the log folder, or prompt for it
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $script_dir
 if [ -a $script_dir/log_folder.txt ]; then
   read log_folder < $script_dir/log_folder.txt
 else
+  echo "here"
   log_folder=0
   while [ ! -d "$log_folder" ]; do
     echo "Enter the path from the home directory to the log folder."
@@ -14,9 +14,12 @@ else
   done
 fi
 
+#Check -a flag
+
+
 if [ $# -eq 0 ]; then #If we are reading previous notes
-  prev_log=$(ls $log_folder/notes_* | sort | tail -1)
-  if [ -a $prev_log ]; then
+  if [ -f notes_*.txt ]; then
+    prev_log=$(ls $log_folder/notes_* 2>/dev/null | sort | tail -1)
     echo -e "\n$(cut -f1,2 $prev_log | tail -10)\n"
   else
     echo -e "\nNo notes to display.\n"
