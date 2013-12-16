@@ -15,12 +15,22 @@ else
 fi
 
 #Check -a flag
+aflag="0"
+if [ $# -gt 0 ]; then
+  if [ $1 == "-a" ]; then
+    aflag="1"    
+  fi
+fi
 
-
-if [ $# -eq 0 ]; then #If we are reading previous notes
-  if [ -f notes_*.txt ]; then
+#Read from log or write to log
+if [ $# -eq 0 ] || [ $aflag == "1" ]; then #If we are reading previous notes
+  if [ -f $log_folder/notes_*.txt ]; then
     prev_log=$(ls $log_folder/notes_* 2>/dev/null | sort | tail -1)
-    echo -e "\n$(cut -f1,2 $prev_log | tail -10)\n"
+    if [ $aflag == "1" ]; then
+      echo -e "\n$(cut -f1,2,3,4 $prev_log | tail -10)\n"
+    else
+      echo -e "\n$(cut -f1,2 $prev_log | tail -10)\n"
+    fi
   else
     echo -e "\nNo notes to display.\n"
   fi
