@@ -10,7 +10,7 @@ your-hostname$ n
 
 This will prompt you to enter a path to a directory that will hold your notes. I recommend putting your notes in a Dropbox folder, so that you can sync notes from multiple machines. After that, to enter a new note, you can type:
 
-my-computer$ n this is a new note! 
+your-hostname$ n this is a new note! 
 
 "this is a new note!" will be saved to your notes file. To view your old notes, type:
 
