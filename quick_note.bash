@@ -24,10 +24,12 @@ fi
 
 #Read from log or write to log
 if [ $# -eq 0 ] || [ $aflag == "1" ]; then #If we are reading previous notes
-  if [ -f $log_folder/notes_*.txt ]; then
+  log_files=($log_folder/notes_*.txt)
+  if [ -e "${log_files[0]}" ]; then
     prev_log=$(ls $log_folder/notes_* 2>/dev/null | sort | tail -1)
     if [ $aflag == "1" ]; then
-      echo -e "\n$(cut -f1,2,3,4 $prev_log | tail -10)\n"
+      #change -a flag to cut all past logs
+      #echo -e "\n$(ls $log_folder/notes_*.txt | sort | cut -f1,2)\n"
     else
       echo -e "\n$(cut -f1,2 $prev_log | tail -10)\n"
     fi
