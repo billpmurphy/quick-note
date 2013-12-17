@@ -6,16 +6,23 @@ alias n='bash /path/to/script/quick_note.bash'
 
 Obviously, you should substitute "/path/to/script" with the file path to wherever you placed the quick_note.bash file. Then, open up the Terminal and type:
 
-your-hostname$ n
+$ n
 
 This will prompt you to enter a path to a directory that will hold your notes. I recommend putting your notes in a Dropbox folder, so that you can sync notes from multiple machines. After that, to enter a new note, you can type:
 
-your-hostname$ n this is a new note! 
+$ n this is a new note! 
 
-"this is a new note!" will be saved to your notes file. To view your old notes, type:
+"this is a new note!" will be saved to your notes file. To view your 10 most recent notes, type:
 
-your-hostname$ n
+$ n
 
-This will show you the 10 most recent notes. 
+To view all notes, including information about the directory in which they were written and the hostname of the machine you were on, use the -a flag:
+
+$ n -a
+
+This is useful for searching old notes, e.g.:
+
+$ n -a | grep "python"
+ 
 
  

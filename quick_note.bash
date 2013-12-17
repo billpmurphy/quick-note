@@ -26,11 +26,12 @@ fi
 if [ $# -eq 0 ] || [ $aflag == "1" ]; then #If we are reading previous notes
   log_files=($log_folder/notes_*.txt)
   if [ -e "${log_files[0]}" ]; then
-    prev_log=$(ls $log_folder/notes_* 2>/dev/null | sort | tail -1)
     if [ $aflag == "1" ]; then
-      #change -a flag to cut all past logs
-      #echo -e "\n$(ls $log_folder/notes_*.txt | sort | cut -f1,2)\n"
+      for file in $log_folder/notes_*; do 
+        echo "$(cut -f1,2,3,4 $file)" 
+      done
     else
+      prev_log=$(ls $log_folder/notes_* 2>/dev/null | sort | tail -1)
       echo -e "\n$(cut -f1,2 $prev_log | tail -10)\n"
     fi
   else
